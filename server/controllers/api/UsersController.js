@@ -4,7 +4,7 @@ import { userValidator } from "../../validations/user";
 const UsersController = {
     list(req, res) {
         User.find({}).exec(function (err, users) {
-            res.send(users);
+            res.send({data: users});
         });
     },
     async store(req, res) {
@@ -26,7 +26,7 @@ const UsersController = {
         if (error) return res.status(422).send(error.details[0].message);
 
         try {
-            const user = await User.findOne({ _id: req.params._id });
+            const user = await User.findOne({ id: req.params.id });
             user.user_name = userUpdate.user_name;
             user.password = userUpdate.password;
             user.full_name = userUpdate.full_name;
@@ -44,11 +44,11 @@ const UsersController = {
     },
     async destroy(req, res) {
         try {
-            if (req.params._id === res.locals.token._id) {
+            if (req.params.id === res.locals.token.id) {
                 throw new Error("Can not delete user!")
             }
             await User.deleteOne({
-                _id: req.params._id,
+                id: req.params.id,
             });
 
             return res.send("success");

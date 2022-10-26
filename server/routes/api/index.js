@@ -17,7 +17,7 @@ router.post("/login", AuthController.login);
 // Users
 router.get("/users", verifyToken, UsersController.list);
 router.post("/users", verifyToken, UsersController.store);
-router.put("/users/:_id", verifyToken, UsersController.update);
-router.delete("/users/:_id", verifyToken, UsersController.destroy);
+router.put("/users/:id", verifyToken, UsersController.update);
+router.delete("/users/:id", verifyToken, UsersController.destroy);
 
 export default router;

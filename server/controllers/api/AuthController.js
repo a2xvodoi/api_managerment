@@ -20,7 +20,19 @@ const AuthController = {
 
         try {
             const newUser = await user.save();
-            await res.send(newUser);
+            const token = jwt.sign(
+                { id: user.id },
+                process.env.TOKEN_SECRET,
+                {
+                    expiresIn: 60 * 60 * 24,
+                }
+            );
+            const response = {
+                user_name: newUser.user_name,
+                email: newUser.email,
+                token
+            }
+            return res.send(response);
         } catch (err) {
             res.status(400).send(err);
         }
@@ -40,10 +52,15 @@ const AuthController = {
         if (!isCorrectPassword)
             return res.status(422).send("Email or Password is not correct");
 
-        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
             expiresIn: 60 * 60 * 24,
         });
-        return res.send({ token });
+        const response = {
+            user_name: user.user_name,
+            email: user.email,
+            token
+        }
+        return res.send(response);
     },
 };
 

@@ -6,8 +6,9 @@ const Schema = mongoose.Schema;
 
 const User = new Schema(
     {
-        _id: {
+        id: {
             type: String,
+            unique: true,
             default: shortid.generate,
         },
         user_name: {

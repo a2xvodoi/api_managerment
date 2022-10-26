@@ -2,13 +2,30 @@
   "name": "api-managerment",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node --experimental-modules --es-module-specifier-resolution=node ./server/bin/www",
+    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node --inspect ./server/bin/www"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
     "express": "~4.16.1",
-    "morgan": "~1.9.1"
+    "joi": "^17.6.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.0",
+    "morgan": "~1.9.1",
+    "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }

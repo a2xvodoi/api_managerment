@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node --experimental-modules --es-module-specifier-resolution=node ./server/bin/www",
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node --inspect ./server/bin/www",
-    "build": "./node_modules/.bin/netlify-lambda build ./server/server.js"
+    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node --inspect ./server/bin/www"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,8 +18,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.0",
     "morgan": "~1.9.1",
-    "netlify-lambda": "^2.0.15",
-    "serverless-http": "^3.1.0",
     "shortid": "^2.2.16"
   },
   "devDependencies": {
